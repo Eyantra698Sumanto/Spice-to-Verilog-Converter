@@ -28,7 +28,7 @@ for contentlist in contentlines:
 		netnames=contentlist.split()
 		net = ' '.join(map(str,netnames[1:-1]))
 		netnames[-1]=netnames[-1].replace("sky130",'')
-		net=net.replace(netnames[-1],'')
+		#net=net.replace(netnames[-1],'')
 		#net=net.replace('BI_','')
 		#net=net.replace('BO_','')
 		net2=[]
