@@ -26,7 +26,7 @@ uutlist=[]
 filelist=[]
 for contentlist in contentlines:
 	if len(contentlist)>1 and ( contentlist[0:1]=='U' or contentlist[0:1]=='X') and not 'plot_' in contentlist :
-		print(contentlist)
+		#print(contentlist)
 		netnames=contentlist.split()
 		net = ' '.join(map(str,netnames[1:-1]))
 		netnames[-1]=netnames[-1].replace("sky130",'')
@@ -35,7 +35,7 @@ for contentlist in contentlines:
 		#net=net.replace('BO_','')
 		net2=[]
 		for j in net.split():
-			print(j)
+			#print(j)
 			secondpart=j
 			if '_' in j:
 				secondpart=j.split('_')[1]
