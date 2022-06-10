@@ -1,0 +1,24 @@
+* /home/sumanto/Desktop/hackathon/rvmyth/rvmyth.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Mon Feb  7 02:03:35 2022
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and def_rvtodac_e sequence: 2,1,0
+
+* Sheet Name: /
+R1  Net-_R1-Pad1_ Net-_R1-Pad2_ 1k		
+R2  Net-_R1-Pad2_ C__rvtodac_ 10k		
+v1  Net-_R1-Pad1_ GND DC		
+C1  C__rvtodac_ GND 0.1u		
+U1  C__rvtodac_ plot_v1		
+U5  Net-_U2-Pad3_ Net-_U2-Pad4_ Net-_U2-Pad5_ Net-_U2-Pad6_ Net-_U2-Pad7_ Net-_U2-Pad8_ Net-_U2-Pad9_ Net-_U2-Pad10_ Net-_U5-Pad9_ Net-_U5-Pad10_ Net-_U5-Pad11_ Net-_U5-Pad12_ Net-_U5-Pad13_ Net-_U5-Pad14_ Net-_U5-Pad15_ Net-_U5-Pad16_ dac_bridge_8		
+U4  Net-_U2-Pad11_ Net-_U2-Pad12_ Net-_U4-Pad3_ Net-_U4-Pad4_ dac_bridge_2		
+U6  _rvtodac_ plot_v1		
+U2  _clk_0_I_BI _reset_0_I_BI _rvtodac_9_W_BO _rvtodac_8_W_BO  _rvtodac_7_W_BO _rvtodac_6_W_BO _rvtodac_5_W_BO _rvtodac_4_W_BO _rvtodac_3_W_BO _rvtodac_2_W_BO _rvtodac_1_W_BO _rvtodac_0_W_BO sky130rvmyth		
+U3  clk rst Net-_U2-Pad1_ Net-_U2-Pad2_ adc_bridge_2		
+v2  rst GND DC		
+X1  Net-_R1-Pad1_ Net-_R1-Pad2_ C__rvtodac_ clk Clock_pulse_generator		
+X2  _rvtodac_9_W_BI _rvtodac_8_W_BI _rvtodac_7_W_BI _rvtodac_6_W_BI _rvtodac_5_W_BI _rvtodac_4_W_BI _rvtodac_3_W_BI _rvtodac_2_W_BI _rvtodac_1_W_BI _rvtodac_0_W_BI _out_0_OR_ sky13010bitDAC		
+U7  clk plot_v1		
+
+.end
