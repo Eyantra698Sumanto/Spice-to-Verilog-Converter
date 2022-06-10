@@ -1,8 +1,10 @@
 # \
 import os
+import sys
+
 kicadFile = "/home/sumanto/Desktop/spice_verilog_mapper/circuit"
 #projpath = "/home/sumanto/Desktop/spice_verilog_mapper/"
-#kicadFile = self.clarg1
+kicadFile = sys.argv[1]
 (projpath, filename) = os.path.split(kicadFile)
 #if os.path.isfile(os.path.join(projpath, 'analysis')):
 #    print("Analysis file is present")
@@ -23,8 +25,8 @@ realwirelist=[]
 uutlist=[]
 filelist=[]
 for contentlist in contentlines:
-	if "sky130" in contentlist:
-		#print(contentlist)
+	if len(contentlist)>1 and ( contentlist[0:1]=='U' or contentlist[0:1]=='X') and not 'plot_' in contentlist :
+		print(contentlist)
 		netnames=contentlist.split()
 		net = ' '.join(map(str,netnames[1:-1]))
 		netnames[-1]=netnames[-1].replace("sky130",'')
@@ -33,15 +35,18 @@ for contentlist in contentlines:
 		#net=net.replace('BO_','')
 		net2=[]
 		for j in net.split():
-			
-			if j.split('_')[1] in net2:
+			print(j)
+			secondpart=j
+			if '_' in j:
+				secondpart=j.split('_')[1]
+			if secondpart in net2:
 				continue
-			if net.count(j.split('_')[1])-1>0:
-				l="["+str(net.count(j.split('_')[1])-1)+":0"+"] "+j.split('_')[1]
+			if net.count(secondpart)-1>0:
+				l="["+str(net.count(secondpart)-1)+":0"+"] "+secondpart
 			else:
-				l=j.split('_')[1]
+				l=secondpart
 			
-			net2.append(j.split('_')[1])
+			net2.append(secondpart)
 			if '_I_' in str(j):
 				inputlist.append(l)
 			if '_IR_' in str(j):
