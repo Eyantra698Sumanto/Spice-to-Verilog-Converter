@@ -1,4 +1,3 @@
-# \
 import os
 import sys
 
@@ -24,8 +23,10 @@ wirelist=[]
 realwirelist=[]
 uutlist=[]
 filelist=[]
+parsedcontent=[]
 for contentlist in contentlines:
-	if len(contentlist)>1 and ( contentlist[0:1]=='U' or contentlist[0:1]=='X') and not 'plot_' in contentlist :
+	if "sky130" in contentlist:
+	# if len(contentlist)>1 and ( contentlist[0:1]=='U' or contentlist[0:1]=='X') and not 'plot_' in contentlist :
 		#print(contentlist)
 		netnames=contentlist.split()
 		net = ' '.join(map(str,netnames[1:-1]))
@@ -67,21 +68,25 @@ for contentlist in contentlines:
 #print(inputlist)
 #print(outputlist)
 #print(wirelist)
+
 for j in filelist:
-	print('''`include "'''+j+'''.v"''')
-print("module "+filename+"("+', '.join(inputlist+realinputlist+outputlist+realoutputlist)+");")
+	parsedcontent.append('''`include "'''+j+'''.v"''')
+parsedcontent.append("module "+filename+"("+', '.join(inputlist+realinputlist+outputlist+realoutputlist)+");")
 if inputlist:
-	print("input "+', '.join(inputlist)+";")
+	parsedcontent.append("input "+', '.join(inputlist)+";")
 if realinputlist:
-	print("input real "+', '.join(inputlist)+";")
+	parsedcontent.append("input real "+', '.join(inputlist)+";")
 if outputlist:
-	print("output "+', '.join(outputlist)+";")
+	parsedcontent.append("output "+', '.join(outputlist)+";")
 if realoutputlist:
-	print("output real "+', '.join(realoutputlist)+";")
+	parsedcontent.append("output real "+', '.join(realoutputlist)+";")
 if wirelist:
-	print("wire "+', '.join(wirelist)+";")
+	parsedcontent.append("wire "+', '.join(wirelist)+";")
 if realwirelist:
-	print("wire real"+', '.join(realwirelist)+";")
+	parsedcontent.append("wire real"+', '.join(realwirelist)+";")
 for j in uutlist:
+	parsedcontent.append(j)
+parsedcontent.append("endmodule;")
+for j in parsedcontent:
 	print(j)
-print("endmodule;")
+	parsedfile.write(j+"\n")
